@@ -1,0 +1,26 @@
+// manifest.json
+{
+  "name": "Victoria Blooming - Tokyo Cherry Blossom Guide",
+  "short_name": "Victoria Blooming",
+  "description": "Beautiful cherry blossom spots in Tokyo with Russian guide",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "orientation": "portrait",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23000000'/%3E%3Ccircle cx='50' cy='50' r='45' fill='%23ff69b4'/%3E%3Ccircle cx='35' cy='35' r='8' fill='%23000000'/%3E%3Ccircle cx='65' cy='35' r='8' fill='%23000000'/%3E%3Cpath d='M30 65 Q50 80 70 65' stroke='%23000000' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23000000'/%3E%3Ccircle cx='50' cy='50' r='45' fill='%23ff69b4'/%3E%3Ccircle cx='35' cy='35' r='8' fill='%23000000'/%3E%3Ccircle cx='65' cy='35' r='8' fill='%23000000'/%3E%3Cpath d='M30 65 Q50 80 70 65' stroke='%23000000' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

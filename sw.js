@@ -1,5 +1,5 @@
 // sw.js
-const CACHE_NAME = 'victoria's-blooming-v1';
+const CACHE_NAME = 'victoria-blooming-v1';
 const urlsToCache = [
   'index.html',
   'manifest.json'

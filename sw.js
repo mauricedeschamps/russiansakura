@@ -1,8 +1,8 @@
 // sw.js
 const CACHE_NAME = 'victorias-blooming-v1';
 const urlsToCache = [
-  '/',
-  '/manifest.json'
+  'index.html',
+  'manifest.json'
 ];
 
 // インストールイベント

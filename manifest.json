@@ -1,7 +1,7 @@
 // manifest.json
 {
-  "name": "Victoria Blooming - Tokyo Cherry Blossom Guide",
-  "short_name": "Victoria Blooming",
+  "name": "Victoria's Blooming - Tokyo Cherry Blossom Guide",
+  "short_name": "Victoria's Blooming",
   "description": "Beautiful cherry blossom spots in Tokyo with Russian guide",
   "start_url": "index.html",
   "display": "standalone",

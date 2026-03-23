@@ -8,13 +8,12 @@
     <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.json">
     
-    <!-- iOS用メタタグ -->
+    <!-- iOS meta tags -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="Victoria's Blooming">
     <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23000000'/%3E%3Ccircle cx='50' cy='50' r='45' fill='%23ff69b4'/%3E%3Ccircle cx='35' cy='35' r='8' fill='%23000000'/%3E%3Ccircle cx='65' cy='35' r='8' fill='%23000000'/%3E%3Cpath d='M30 65 Q50 80 70 65' stroke='%23000000' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
     
-    <!-- テーマカラー -->
     <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
     
@@ -55,7 +54,6 @@
             border-top-color: #d9c9ba;
         }
         
-        /* メインコンテンツエリア - スクロール可能 */
         .main-content {
             flex: 1;
             width: 100%;
@@ -81,7 +79,6 @@
             font-size: 1rem;
         }
         
-        /* インストールバナー - 画面上部に固定 */
         .install-banner {
             position: sticky;
             top: 0;
@@ -417,18 +414,15 @@
             background: #faf4f0;
         }
 
-        /* iOSでのタップハイライト除去 */
         * {
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* 詳細表示時のヘッダー調整 */
         body.detail-view h1,
         body.detail-view .sub {
             display: none;
         }
 
-        /* レスポンシブ対応 */
         @media (max-width: 480px) {
             h1 {
                 font-size: 1.8rem;
@@ -453,7 +447,6 @@
     </style>
 </head>
 <body>
-    <!-- インストールバナー - 上部固定 -->
     <div id="installBanner" class="install-banner hidden">
         <div class="install-message">
             <div class="install-icon">🐱</div>
@@ -465,7 +458,6 @@
         </div>
     </div>
 
-    <!-- メインコンテンツ - スクロールエリア -->
     <div class="main-content">
         <h1 id="main-title">🐱 Victoria's Blooming</h1>
         <div class="sub" id="main-sub">Best cherry blossom spots in Tokyo</div>
@@ -497,257 +489,54 @@
     </div>
 
     <script>
-        // Tokyo cherry blossom spots data with Russian as primary
+        // 12 Tokyo cherry blossom spots (added Chidorigafuchi, Hibiya Park, Yoyogi Park, Shiba Park)
         const spotsData = {
             ru: [
-                {
-                    id: 1,
-                    title: "Парк Уэно",
-                    location: "Тайто, Токио",
-                    bestTime: "Конец марта – начало апреля",
-                    desc: "Одно из самых известных мест цветения сакуры в Японии с периода Эдо. Около 800 вишневых деревьев более 50 сортов выстроились вдоль парка. Туннель из сакуры, ведущий к храму Бентэндо, и цветение вокруг пруда Синобадзу впечатляют. Ночные иллюминации создают волшебную атмосферу.",
-                    imageUrl: "https://img-cdn.guide.travel.co.jp/article/455/25248/21AED089C24B47899AF5FF82E2E6A3EC_LL.jpg",
-                    fee: "Бесплатно",
-                    officialUrl: "https://www.japan-guide.com/e/e3019.html"
-                },
-                {
-                    id: 2,
-                    title: "Река Мэгуро",
-                    location: "Мэгуро / Синагава, Токио",
-                    bestTime: "Конец марта – начало апреля",
-                    desc: "Примерно 4 км вишневых деревьев, выстроившихся по обеим сторонам реки, создают потрясающий туннель из цветов. Отражения на водной глади захватывают дух. В районе Накамэгуро есть модные кафе и бутики. Вечерние иллюминации особенно популярны.",
-                    imageUrl: "https://tripeditor.com/wp-content/uploads/2020/03/10165536/shutterstock_1021018888-2.jpg",
-                    fee: "Бесплатно",
-                    officialUrl: "https://www.gotokyo.org/jp/spot/ev198/index.html"
-                },
-                {
-                    id: 3,
-                    title: "Парк Асукаяма",
-                    location: "Кита, Токио",
-                    bestTime: "Конец марта – начало апреля",
-                    desc: "Исторический парк, основанный в период Эдо как место любования сакурой для простых людей. Примерно 600 вишневых деревьев создают потрясающее зрелище. Три бесплатных монорельса предлагают уникальные виды на цветение. Подходит для семей с детьми.",
-                    imageUrl: "https://hinomaru.tokyo/img/kanko/course/b042/img-spot-01.jpg",
-                    fee: "Бесплатно",
-                    officialUrl: "https://kanko.city.kita.lg.jp/spot/445-2/"
-                },
-                {
-                    id: 4,
-                    title: "Сады Хамарикю",
-                    location: "Тюо, Токио",
-                    bestTime: "Конец марта – конец апреля",
-                    desc: "Красивый сад периода Эдо, который когда-то был дворцом сёгуна. Около 80 вишневых деревьев разбросаны вокруг приливного пруда, цветение красиво отражается в воде. Сорт Сомэй-Ёсино и махровая Яэдзакура продлевают сезон цветения.",
-                    imageUrl: "https://static.amanaimages.com/imgroom/cen3tzG4fTr7Gtw1PoeRer/01010/01010011300.jpg",
-                    fee: "¥300 (входной билет)",
-                    officialUrl: "https://www.tokyo-park.or.jp/park/hama-rikyu/index.html"
-                },
-                {
-                    id: 5,
-                    title: "Парк Сумида",
-                    location: "Тайто / Сумида, Токио",
-                    bestTime: "Конец марта – начало апреля",
-                    desc: "Основан, когда сёгун Ёсимунэ посадил вишневые деревья в период Эдо. Около 1 км вишневых деревьев выстроились вдоль реки Сумида, открывая потрясающие виды на фоне Tokyo Skytree. Традиционные лодки якатабунэ предлагают уникальные впечатления от любования сакурой.",
-                    imageUrl: "https://www.gla.or.jp/wp-content/uploads/2019/04/2be07e0dd0bf31fffa8c6697bdc1792f.jpg",
-                    fee: "Бесплатно",
-                    officialUrl: "https://t-navi.city.taito.lg.jp/event/1402"
-                },
-                {
-                    id: 6,
-                    title: "Синдзюку Гёэн",
-                    location: "Синдзюку, Токио",
-                    bestTime: "Середина февраля – конец апреля",
-                    desc: "Более 900 вишневых деревьев примерно 70 сортов позволяют любоваться цветением в течение долгого сезона — от ранних до поздних сортов. Просторный сад предлагает расслабленную атмосферу вдали от толп. Три различных стиля сада: японский, французский и английский.",
-                    imageUrl: "https://www.env.go.jp/garden/content/900466969.jpg",
-                    fee: "¥500 (входной билет)",
-                    officialUrl: "https://fng.or.jp/shinjuku/"
-                },
-                {
-                    id: 7,
-                    title: "Парк Инокасира",
-                    location: "Мусасино / Митака, Токио",
-                    bestTime: "Конец марта – начало апреля",
-                    desc: "Примерно 500 вишневых деревьев, окружающих пруд Инокасира. Аренда лодки-лебедя для любования цветением с воды очень популярна. «Перевернутая сакура», отражающаяся в пруду, создает волшебные возможности для фото. Близко к торговому району Китидзёдзи.",
-                    imageUrl: "https://image.walkerplus.com/wpimg/walkertouch/wtd/images/n/62589.jpg?x=1920&notupsize=1",
-                    fee: "Бесплатно (аренда лодок платная)",
-                    officialUrl: "https://www.gotokyo.org/jp/spot/624/index.html"
-                },
-                {
-                    id: 8,
-                    title: "Сад Рикугиэн",
-                    location: "Бункё, Токио",
-                    bestTime: "Конец марта – начало апреля",
-                    desc: "Изысканный прогулочный сад периода Эдо. Массивное плакучее вишневое дерево — главная достопримечательность, создающая захватывающее дух зрелище. Вечерние иллюминации добавляют волшебное измерение. Более тихое и созерцательное любование сакурой.",
-                    imageUrl: "https://img-cdn.guide.travel.co.jp/article/455/20160304191726/17200DAA2F2D4595AD5F400926404925_LL.jpg",
-                    fee: "¥300 (входной билет)",
-                    officialUrl: "https://www.tokyo-park.or.jp/special/rikugien_lighting_spring/index.html"
-                }
+                { id:1, title:"Парк Уэно", location:"Тайто, Токио", bestTime:"Конец марта – начало апреля", desc:"Одно из самых известных мест цветения сакуры в Японии с периода Эдо. Около 800 вишневых деревьев более 50 сортов выстроились вдоль парка. Туннель из сакуры, ведущий к храму Бентэндо, и цветение вокруг пруда Синобадзу впечатляют. Ночные иллюминации создают волшебную атмосферу.", imageUrl:"https://img-cdn.guide.travel.co.jp/article/455/25248/21AED089C24B47899AF5FF82E2E6A3EC_LL.jpg", fee:"Бесплатно", officialUrl:"https://www.japan-guide.com/e/e3019.html" },
+                { id:2, title:"Река Мэгуро", location:"Мэгуро / Синагава, Токио", bestTime:"Конец марта – начало апреля", desc:"Примерно 4 км вишневых деревьев, выстроившихся по обеим сторонам реки, создают потрясающий туннель из цветов. Отражения на водной глади захватывают дух. В районе Накамэгуро есть модные кафе и бутики. Вечерние иллюминации особенно популярны.", imageUrl:"https://tripeditor.com/wp-content/uploads/2020/03/10165536/shutterstock_1021018888-2.jpg", fee:"Бесплатно", officialUrl:"https://www.gotokyo.org/jp/spot/ev198/index.html" },
+                { id:3, title:"Парк Асукаяма", location:"Кита, Токио", bestTime:"Конец марта – начало апреля", desc:"Исторический парк, основанный в период Эдо как место любования сакурой для простых людей. Примерно 600 вишневых деревьев создают потрясающее зрелище. Три бесплатных монорельса предлагают уникальные виды на цветение. Подходит для семей с детьми.", imageUrl:"https://hinomaru.tokyo/img/kanko/course/b042/img-spot-01.jpg", fee:"Бесплатно", officialUrl:"https://kanko.city.kita.lg.jp/spot/445-2/" },
+                { id:4, title:"Сады Хамарикю", location:"Тюо, Токио", bestTime:"Конец марта – конец апреля", desc:"Красивый сад периода Эдо, который когда-то был дворцом сёгуна. Около 80 вишневых деревьев разбросаны вокруг приливного пруда, цветение красиво отражается в воде. Сорт Сомэй-Ёсино и махровая Яэдзакура продлевают сезон цветения.", imageUrl:"https://static.amanaimages.com/imgroom/cen3tzG4fTr7Gtw1PoeRer/01010/01010011300.jpg", fee:"¥300 (входной билет)", officialUrl:"https://www.tokyo-park.or.jp/park/hama-rikyu/index.html" },
+                { id:5, title:"Парк Сумида", location:"Тайто / Сумида, Токио", bestTime:"Конец марта – начало апреля", desc:"Основан, когда сёгун Ёсимунэ посадил вишневые деревья в период Эдо. Около 1 км вишневых деревьев выстроились вдоль реки Сумида, открывая потрясающие виды на фоне Tokyo Skytree. Традиционные лодки якатабунэ предлагают уникальные впечатления от любования сакурой.", imageUrl:"https://www.gla.or.jp/wp-content/uploads/2019/04/2be07e0dd0bf31fffa8c6697bdc1792f.jpg", fee:"Бесплатно", officialUrl:"https://t-navi.city.taito.lg.jp/event/1402" },
+                { id:6, title:"Синдзюку Гёэн", location:"Синдзюку, Токио", bestTime:"Середина февраля – конец апреля", desc:"Более 900 вишневых деревьев примерно 70 сортов позволяют любоваться цветением в течение долгого сезона — от ранних до поздних сортов. Просторный сад предлагает расслабленную атмосферу вдали от толп. Три различных стиля сада: японский, французский и английский.", imageUrl:"https://www.env.go.jp/garden/content/900466969.jpg", fee:"¥500 (входной билет)", officialUrl:"https://fng.or.jp/shinjuku/" },
+                { id:7, title:"Парк Инокасира", location:"Мусасино / Митака, Токио", bestTime:"Конец марта – начало апреля", desc:"Примерно 500 вишневых деревьев, окружающих пруд Инокасира. Аренда лодки-лебедя для любования цветением с воды очень популярна. «Перевернутая сакура», отражающаяся в пруду, создает волшебные возможности для фото. Близко к торговому району Китидзёдзи.", imageUrl:"https://image.walkerplus.com/wpimg/walkertouch/wtd/images/n/62589.jpg?x=1920&notupsize=1", fee:"Бесплатно (аренда лодок платная)", officialUrl:"https://www.gotokyo.org/jp/spot/624/index.html" },
+                { id:8, title:"Сад Рикугиэн", location:"Бункё, Токио", bestTime:"Конец марта – начало апреля", desc:"Изысканный прогулочный сад периода Эдо. Массивное плакучее вишневое дерево — главная достопримечательность, создающая захватывающее дух зрелище. Вечерние иллюминации добавляют волшебное измерение. Более тихое и созерцательное любование сакурой.", imageUrl:"https://img-cdn.guide.travel.co.jp/article/455/20160304191726/17200DAA2F2D4595AD5F400926404925_LL.jpg", fee:"¥300 (входной билет)", officialUrl:"https://www.tokyo-park.or.jp/special/rikugien_lighting_spring/index.html" },
+                // 新增 千鸟渊
+                { id:9, title:"Ров Тидоригафути", location:"Тиёда, Токио", bestTime:"Конец марта – начало апреля", desc:"Живописный ров бывшего Императорского дворца с长约700 метрами вишневых деревьев вдоль воды. Прогулка на лодке под цветущим тоннелем сакуры — незабываемое впечатление. Ночная подсветка создает сказочную атмосферу, а вид на башни дворца добавляет величия.", imageUrl:"https://www.gotokyo.org/destinations/western-tokyo/chiyoda/chidorigafuchi/images/main.jpg", fee:"Бесплатно (аренда лодок платная)", officialUrl:"https://www.japan-guide.com/e/e3017.html" },
+                { id:10, title:"Парк Хибия", location:"Тиёда, Токио", bestTime:"Конец марта – начало апреля", desc:"Первый западный парк Японии, открытый в 1903 году. Около 300 вишневых деревьев украшают парк, включая редкие сорта. Сочетание европейской архитектуры, фонтанов и японской сакуры создает уникальную атмосферу. Прекрасное место для пикника в центре Токио.", imageUrl:"https://www.gotokyo.org/destinations/central-tokyo/chiyoda/hibiya-park/images/main.jpg", fee:"Бесплатно", officialUrl:"https://www.tokyo-park.or.jp/park/hibiya/index.html" },
+                { id:11, title:"Парк Йойоги", location:"Сибуя, Токио", bestTime:"Конец марта – начало апреля", desc:"Огромный городской парк, где более 600 вишен расцветают яркими красками. Просторные лужайки идеально подходят для ханami под открытым небом. Рядом с храмом Мэйдзи Дзингу, что добавляет духовной атмосферы. Популярное место среди местных жителей и туристов.", imageUrl:"https://www.gotokyo.org/destinations/western-tokyo/shibuya/yoyogi-park/images/main.jpg", fee:"Бесплатно", officialUrl:"https://www.tokyo-park.or.jp/park/yoyogi/index.html" },
+                { id:12, title:"Парк Сиба", location:"Минато, Токио", bestTime:"Конец марта – начало апреля", desc:"Один из старейших парков Токио, расположенный у подножия Tokyo Tower. Около 200 вишневых деревьев создают живописный контраст с iconic красной башней. Сочетание урбанистического пейзажа и традиционной сакуры делает это место идеальным для фотографий. Спокойная атмосфера в центре мегаполиса.", imageUrl:"https://www.tokyo-park.or.jp/park/shiba/images/20230323114122.jpg", fee:"Бесплатно", officialUrl:"https://www.tokyo-park.or.jp/park/shiba/index.html" }
             ],
             en: [
-                {
-                    id: 1,
-                    title: "Ueno Park",
-                    location: "Taito City, Tokyo",
-                    bestTime: "Late March – Early April",
-                    desc: "One of Japan's most famous cherry blossom spots since the Edo period. Approximately 800 cherry trees of over 50 varieties line the park. The cherry tunnel leading to Bentendo Temple and blossoms around Shinobazu Pond are spectacular. Night illuminations create a magical atmosphere.",
-                    imageUrl: "https://img-cdn.guide.travel.co.jp/article/455/25248/21AED089C24B47899AF5FF82E2E6A3EC_LL.jpg",
-                    fee: "Free",
-                    officialUrl: "https://www.japan-guide.com/e/e3019.html"
-                },
-                {
-                    id: 2,
-                    title: "Meguro River",
-                    location: "Meguro / Shinagawa, Tokyo",
-                    bestTime: "Late March – Early April",
-                    desc: "Approximately 4km of cherry trees lining both sides of the river, creating a stunning tunnel of blossoms. The reflections on the water surface are breathtaking. The Nakameguro area offers trendy cafes and boutiques. Evening illuminations are particularly popular.",
-                    imageUrl: "https://tripeditor.com/wp-content/uploads/2020/03/10165536/shutterstock_1021018888-2.jpg",
-                    fee: "Free",
-                    officialUrl: "https://www.gotokyo.org/jp/spot/ev198/index.html"
-                },
-                {
-                    id: 3,
-                    title: "Asukayama Park",
-                    location: "Kita City, Tokyo",
-                    bestTime: "Late March – Early April",
-                    desc: "A historic park established in the Edo period as a cherry blossom viewing spot for common people. Approximately 600 cherry trees create a stunning display. Three free monorails offer unique views of the blossoms. Family-friendly with playgrounds.",
-                    imageUrl: "https://hinomaru.tokyo/img/kanko/course/b042/img-spot-01.jpg",
-                    fee: "Free",
-                    officialUrl: "https://kanko.city.kita.lg.jp/spot/445-2/"
-                },
-                {
-                    id: 4,
-                    title: "Hamarikyu Gardens",
-                    location: "Chuo City, Tokyo",
-                    bestTime: "Late March – Late April",
-                    desc: "A beautiful Edo-period garden that was once a shogun's palace. Approximately 80 cherry trees are scattered around a tidal pond, with blossoms reflected beautifully in the water. Somei-Yoshino and double-flowered Yaezakura extend the viewing season.",
-                    imageUrl: "https://static.amanaimages.com/imgroom/cen3tzG4fTr7Gtw1PoeRer/01010/01010011300.jpg",
-                    fee: "¥300 (General admission)",
-                    officialUrl: "https://www.tokyo-park.or.jp/park/hama-rikyu/index.html"
-                },
-                {
-                    id: 5,
-                    title: "Sumida Park",
-                    location: "Taito / Sumida, Tokyo",
-                    bestTime: "Late March – Early April",
-                    desc: "Established when Shogun Yoshimune planted cherry trees in the Edo period. About 1km of cherry trees line the Sumida River, offering spectacular views with Tokyo Skytree in the background. Traditional yakatabune boats offer unique cherry viewing experiences.",
-                    imageUrl: "https://www.gla.or.jp/wp-content/uploads/2019/04/2be07e0dd0bf31fffa8c6697bdc1792f.jpg",
-                    fee: "Free",
-                    officialUrl: "https://t-navi.city.taito.lg.jp/event/1402"
-                },
-                {
-                    id: 6,
-                    title: "Shinjuku Gyoen",
-                    location: "Shinjuku City, Tokyo",
-                    bestTime: "Mid February – Late April",
-                    desc: "Over 900 cherry trees of approximately 70 varieties allow for a long viewing season from early-blooming to late-blooming varieties. The spacious garden offers a relaxed atmosphere away from crowds. Three distinct garden styles: Japanese, French, and English.",
-                    imageUrl: "https://www.env.go.jp/garden/content/900466969.jpg",
-                    fee: "¥500 (General admission)",
-                    officialUrl: "https://fng.or.jp/shinjuku/"
-                },
-                {
-                    id: 7,
-                    title: "Inokashira Park",
-                    location: "Musashino / Mitaka, Tokyo",
-                    bestTime: "Late March – Early April",
-                    desc: "Approximately 500 cherry trees surrounding Inokashira Pond. Renting a swan boat to view the blossoms from the water is extremely popular. The 'upside-down cherries' reflected in the pond create magical photo opportunities. Close to Kichijoji shopping area.",
-                    imageUrl: "https://image.walkerplus.com/wpimg/walkertouch/wtd/images/n/62589.jpg?x=1920&notupsize=1",
-                    fee: "Free (Boats rental fee applies)",
-                    officialUrl: "https://www.gotokyo.org/jp/spot/624/index.html"
-                },
-                {
-                    id: 8,
-                    title: "Rikugi-en Garden",
-                    location: "Bunkyo City, Tokyo",
-                    bestTime: "Late March – Early April",
-                    desc: "An exquisite stroll garden from the Edo period. The massive weeping cherry tree is the main attraction, creating a breathtaking display. Evening illuminations add a magical dimension. A quieter, more contemplative cherry viewing experience.",
-                    imageUrl: "https://img-cdn.guide.travel.co.jp/article/455/20160304191726/17200DAA2F2D4595AD5F400926404925_LL.jpg",
-                    fee: "¥300 (General admission)",
-                    officialUrl: "https://www.tokyo-park.or.jp/special/rikugien_lighting_spring/index.html"
-                }
+                { id:1, title:"Ueno Park", location:"Taito City, Tokyo", bestTime:"Late March – Early April", desc:"One of Japan's most famous cherry blossom spots since the Edo period. Approximately 800 cherry trees of over 50 varieties line the park. The cherry tunnel leading to Bentendo Temple and blossoms around Shinobazu Pond are spectacular. Night illuminations create a magical atmosphere.", imageUrl:"https://img-cdn.guide.travel.co.jp/article/455/25248/21AED089C24B47899AF5FF82E2E6A3EC_LL.jpg", fee:"Free", officialUrl:"https://www.japan-guide.com/e/e3019.html" },
+                { id:2, title:"Meguro River", location:"Meguro / Shinagawa, Tokyo", bestTime:"Late March – Early April", desc:"Approximately 4km of cherry trees lining both sides of the river, creating a stunning tunnel of blossoms. The reflections on the water surface are breathtaking. The Nakameguro area offers trendy cafes and boutiques. Evening illuminations are particularly popular.", imageUrl:"https://tripeditor.com/wp-content/uploads/2020/03/10165536/shutterstock_1021018888-2.jpg", fee:"Free", officialUrl:"https://www.gotokyo.org/jp/spot/ev198/index.html" },
+                { id:3, title:"Asukayama Park", location:"Kita City, Tokyo", bestTime:"Late March – Early April", desc:"A historic park established in the Edo period as a cherry blossom viewing spot for common people. Approximately 600 cherry trees create a stunning display. Three free monorails offer unique views of the blossoms. Family-friendly with playgrounds.", imageUrl:"https://hinomaru.tokyo/img/kanko/course/b042/img-spot-01.jpg", fee:"Free", officialUrl:"https://kanko.city.kita.lg.jp/spot/445-2/" },
+                { id:4, title:"Hamarikyu Gardens", location:"Chuo City, Tokyo", bestTime:"Late March – Late April", desc:"A beautiful Edo-period garden that was once a shogun's palace. Approximately 80 cherry trees are scattered around a tidal pond, with blossoms reflected beautifully in the water. Somei-Yoshino and double-flowered Yaezakura extend the viewing season.", imageUrl:"https://static.amanaimages.com/imgroom/cen3tzG4fTr7Gtw1PoeRer/01010/01010011300.jpg", fee:"¥300 (General admission)", officialUrl:"https://www.tokyo-park.or.jp/park/hama-rikyu/index.html" },
+                { id:5, title:"Sumida Park", location:"Taito / Sumida, Tokyo", bestTime:"Late March – Early April", desc:"Established when Shogun Yoshimune planted cherry trees in the Edo period. About 1km of cherry trees line the Sumida River, offering spectacular views with Tokyo Skytree in the background. Traditional yakatabune boats offer unique cherry viewing experiences.", imageUrl:"https://www.gla.or.jp/wp-content/uploads/2019/04/2be07e0dd0bf31fffa8c6697bdc1792f.jpg", fee:"Free", officialUrl:"https://t-navi.city.taito.lg.jp/event/1402" },
+                { id:6, title:"Shinjuku Gyoen", location:"Shinjuku City, Tokyo", bestTime:"Mid February – Late April", desc:"Over 900 cherry trees of approximately 70 varieties allow for a long viewing season from early-blooming to late-blooming varieties. The spacious garden offers a relaxed atmosphere away from crowds. Three distinct garden styles: Japanese, French, and English.", imageUrl:"https://www.env.go.jp/garden/content/900466969.jpg", fee:"¥500 (General admission)", officialUrl:"https://fng.or.jp/shinjuku/" },
+                { id:7, title:"Inokashira Park", location:"Musashino / Mitaka, Tokyo", bestTime:"Late March – Early April", desc:"Approximately 500 cherry trees surrounding Inokashira Pond. Renting a swan boat to view the blossoms from the water is extremely popular. The 'upside-down cherries' reflected in the pond create magical photo opportunities. Close to Kichijoji shopping area.", imageUrl:"https://image.walkerplus.com/wpimg/walkertouch/wtd/images/n/62589.jpg?x=1920&notupsize=1", fee:"Free (Boats rental fee applies)", officialUrl:"https://www.gotokyo.org/jp/spot/624/index.html" },
+                { id:8, title:"Rikugi-en Garden", location:"Bunkyo City, Tokyo", bestTime:"Late March – Early April", desc:"An exquisite stroll garden from the Edo period. The massive weeping cherry tree is the main attraction, creating a breathtaking display. Evening illuminations add a magical dimension. A quieter, more contemplative cherry viewing experience.", imageUrl:"https://img-cdn.guide.travel.co.jp/article/455/20160304191726/17200DAA2F2D4595AD5F400926404925_LL.jpg", fee:"¥300 (General admission)", officialUrl:"https://www.tokyo-park.or.jp/special/rikugien_lighting_spring/index.html" },
+                { id:9, title:"Chidorigafuchi Moat", location:"Chiyoda City, Tokyo", bestTime:"Late March – Early April", desc:"Picturesque moat of the former Imperial Palace with about 700m of cherry trees lining the water. Rowing a boat under the cherry blossom tunnel is an unforgettable experience. Night illuminations create a magical atmosphere, and the view of palace towers adds grandeur.", imageUrl:"https://www.gotokyo.org/destinations/western-tokyo/chiyoda/chidorigafuchi/images/main.jpg", fee:"Free (boat rental fee)", officialUrl:"https://www.japan-guide.com/e/e3017.html" },
+                { id:10, title:"Hibiya Park", location:"Chiyoda City, Tokyo", bestTime:"Late March – Early April", desc:"Japan's first Western-style park, opened in 1903. About 300 cherry trees adorn the park, including rare varieties. The fusion of European architecture, fountains, and Japanese cherry blossoms creates a unique atmosphere. Perfect for a picnic in central Tokyo.", imageUrl:"https://www.gotokyo.org/destinations/central-tokyo/chiyoda/hibiya-park/images/main.jpg", fee:"Free", officialUrl:"https://www.tokyo-park.or.jp/park/hibiya/index.html" },
+                { id:11, title:"Yoyogi Park", location:"Shibuya City, Tokyo", bestTime:"Late March – Early April", desc:"A vast urban park where over 600 cherry trees burst into brilliant color. Spacious lawns are ideal for open-air hanami. Adjacent to Meiji Jingu shrine, adding a spiritual atmosphere. A popular spot among locals and tourists alike.", imageUrl:"https://www.gotokyo.org/destinations/western-tokyo/shibuya/yoyogi-park/images/main.jpg", fee:"Free", officialUrl:"https://www.tokyo-park.or.jp/park/yoyogi/index.html" },
+                { id:12, title:"Shiba Park", location:"Minato City, Tokyo", bestTime:"Late March – Early April", desc:"One of Tokyo's oldest parks, located at the foot of Tokyo Tower. About 200 cherry trees create a picturesque contrast with the iconic red tower. The blend of urban scenery and traditional sakura makes this spot ideal for photos. A peaceful atmosphere in the heart of the metropolis.", imageUrl:"https://www.tokyo-park.or.jp/park/shiba/images/20230323114122.jpg", fee:"Free", officialUrl:"https://www.tokyo-park.or.jp/park/shiba/index.html" }
             ],
             ja: [
-                {
-                    id: 1,
-                    title: "上野恩賜公園",
-                    location: "東京都台東区",
-                    bestTime: "見頃：3月下旬～4月上旬",
-                    desc: "江戸時代から続くお花見のメッカ。約800本、50種類以上の桜が楽しめます。さくら通りや不忍池周辺の桜並木は圧巻。夜はぼんぼりライトアップも実施されます。",
-                    imageUrl: "https://img-cdn.guide.travel.co.jp/article/455/25248/21AED089C24B47899AF5FF82E2E6A3EC_LL.jpg",
-                    fee: "無料",
-                    officialUrl: "https://www.japan-guide.com/e/e3019.html"
-                },
-                {
-                    id: 2,
-                    title: "目黒川",
-                    location: "東京都目黒区・品川区",
-                    bestTime: "見頃：3月下旬～4月上旬",
-                    desc: "約4kmにわたって続く桜並木。川面に映る桜と、両岸からせり出す桜のアーチが美しい名所です。中目黒周辺はカフェも多く、夜桜ライトアップも人気です。",
-                    imageUrl: "https://tripeditor.com/wp-content/uploads/2020/03/10165536/shutterstock_1021018888-2.jpg",
-                    fee: "無料",
-                    officialUrl: "https://www.gotokyo.org/jp/spot/ev198/index.html"
-                },
-                {
-                    id: 3,
-                    title: "飛鳥山公園",
-                    location: "東京都北区",
-                    bestTime: "見頃：3月下旬～4月上旬",
-                    desc: "江戸時代から庶民の花見の名所として親しまれてきた公園。約600本の桜が咲き誇り、3つの無料モノレールからも桜を楽しめます。子供連れでも楽しめるファミリー向けスポットです。",
-                    imageUrl: "https://hinomaru.tokyo/img/kanko/course/b042/img-spot-01.jpg",
-                    fee: "無料",
-                    officialUrl: "https://hinomaru.tokyo/img/kanko/course/b042/img-spot-01.jpg"
-                },
-                {
-                    id: 4,
-                    title: "浜離宮恩賜庭園",
-                    location: "東京都中央区",
-                    bestTime: "見頃：3月下旬～4月下旬",
-                    desc: "徳川将軍家の庭園だった特別名勝。潮入の池の周辺に桜が点在し、池に映る桜が美しいです。ソメイヨシノから八重桜まで長く楽しめます。入園料：一般300円。",
-                    imageUrl: "https://static.amanaimages.com/imgroom/cen3tzG4fTr7Gtw1PoeRer/01010/01010011300.jpg",
-                    fee: "有料（一般300円）",
-                    officialUrl: "https://www.tokyo-park.or.jp/park/hama-rikyu/index.html"
-                },
-                {
-                    id: 5,
-                    title: "隅田公園",
-                    location: "東京都台東区・墨田区",
-                    bestTime: "見頃：3月下旬～4月上旬",
-                    desc: "江戸時代に徳川吉宗が桜を植えたのが始まり。隅田川沿いに約1kmの桜並木が続き、東京スカイツリーとの共演が楽しめます。屋形船からの花見も人気です。",
-                    imageUrl: "https://www.gla.or.jp/wp-content/uploads/2019/04/2be07e0dd0bf31fffa8c6697bdc1792f.jpg",
-                    fee: "無料",
-                    officialUrl: "https://t-navi.city.taito.lg.jp/event/1402"
-                },
-                {
-                    id: 6,
-                    title: "新宿御苑",
-                    location: "東京都新宿区",
-                    bestTime: "見頃：2月中旬～4月下旬",
-                    desc: "約70種・900本以上の桜が楽しめる。早咲きから遅咲きまで長い期間桜を鑑賞できます。広大な庭園でのんびりと花見を楽しみたい方におすすめ。",
-                    imageUrl: "https://www.env.go.jp/garden/content/900466969.jpg",
-                    fee: "有料（一般500円）",
-                    officialUrl: "https://fng.or.jp/shinjuku/"
-                },
-                {
-                    id: 7,
-                    title: "井の頭恩賜公園",
-                    location: "東京都武蔵野市・三鷹市",
-                    bestTime: "見頃：3月下旬～4月上旬",
-                    desc: "井の頭池を囲む約500本の桜が美しい。ボートに乗って池から桜を眺めるのが人気で、「逆さ桜」も見どころです。吉祥寺の街歩きと合わせて楽しめます。",
-                    imageUrl: "https://image.walkerplus.com/wpimg/walkertouch/wtd/images/n/62589.jpg?x=1920&notupsize=1",
-                    fee: "無料（ボート代別）",
-                    officialUrl: "https://www.gotokyo.org/jp/spot/624/index.html"
-                },
-                {
-                    id: 8,
-                    title: "六義園",
-                    location: "東京都文京区",
-                    bestTime: "見頃：3月下旬～4月上旬",
-                    desc: "しだれ桜の巨木が有名な回遊式庭園。春には大きなしだれ桜が見事に咲き誇り、夜間ライトアップも幻想的です。落ち着いた雰囲気で桜を鑑賞できます。",
-                    imageUrl: "https://img-cdn.guide.travel.co.jp/article/455/20160304191726/17200DAA2F2D4595AD5F400926404925_LL.jpg",
-                    fee: "有料（一般300円）",
-                    officialUrl: "https://www.tokyo-park.or.jp/special/rikugien_lighting_spring/index.html"
-                }
+                { id:1, title:"上野恩賜公園", location:"東京都台東区", bestTime:"見頃：3月下旬～4月上旬", desc:"江戸時代から続くお花見のメッカ。約800本、50種類以上の桜が楽しめます。さくら通りや不忍池周辺の桜並木は圧巻。夜はぼんぼりライトアップも実施されます。", imageUrl:"https://img-cdn.guide.travel.co.jp/article/455/25248/21AED089C24B47899AF5FF82E2E6A3EC_LL.jpg", fee:"無料", officialUrl:"https://www.japan-guide.com/e/e3019.html" },
+                { id:2, title:"目黒川", location:"東京都目黒区・品川区", bestTime:"見頃：3月下旬～4月上旬", desc:"約4kmにわたって続く桜並木。川面に映る桜と、両岸からせり出す桜のアーチが美しい名所です。中目黒周辺はカフェも多く、夜桜ライトアップも人気です。", imageUrl:"https://tripeditor.com/wp-content/uploads/2020/03/10165536/shutterstock_1021018888-2.jpg", fee:"無料", officialUrl:"https://www.gotokyo.org/jp/spot/ev198/index.html" },
+                { id:3, title:"飛鳥山公園", location:"東京都北区", bestTime:"見頃：3月下旬～4月上旬", desc:"江戸時代から庶民の花見の名所として親しまれてきた公園。約600本の桜が咲き誇り、3つの無料モノレールからも桜を楽しめます。子供連れでも楽しめるファミリー向けスポットです。", imageUrl:"https://hinomaru.tokyo/img/kanko/course/b042/img-spot-01.jpg", fee:"無料", officialUrl:"https://kanko.city.kita.lg.jp/spot/445-2/" },
+                { id:4, title:"浜離宮恩賜庭園", location:"東京都中央区", bestTime:"見頃：3月下旬～4月下旬", desc:"徳川将軍家の庭園だった特別名勝。潮入の池の周辺に桜が点在し、池に映る桜が美しいです。ソメイヨシノから八重桜まで長く楽しめます。入園料：一般300円。", imageUrl:"https://static.amanaimages.com/imgroom/cen3tzG4fTr7Gtw1PoeRer/01010/01010011300.jpg", fee:"有料（一般300円）", officialUrl:"https://www.tokyo-park.or.jp/park/hama-rikyu/index.html" },
+                { id:5, title:"隅田公園", location:"東京都台東区・墨田区", bestTime:"見頃：3月下旬～4月上旬", desc:"江戸時代に徳川吉宗が桜を植えたのが始まり。隅田川沿いに約1kmの桜並木が続き、東京スカイツリーとの共演が楽しめます。屋形船からの花見も人気です。", imageUrl:"https://www.gla.or.jp/wp-content/uploads/2019/04/2be07e0dd0bf31fffa8c6697bdc1792f.jpg", fee:"無料", officialUrl:"https://t-navi.city.taito.lg.jp/event/1402" },
+                { id:6, title:"新宿御苑", location:"東京都新宿区", bestTime:"見頃：2月中旬～4月下旬", desc:"約70種・900本以上の桜が楽しめる。早咲きから遅咲きまで長い期間桜を鑑賞できます。広大な庭園でのんびりと花見を楽しみたい方におすすめ。", imageUrl:"https://www.env.go.jp/garden/content/900466969.jpg", fee:"有料（一般500円）", officialUrl:"https://fng.or.jp/shinjuku/" },
+                { id:7, title:"井の頭恩賜公園", location:"東京都武蔵野市・三鷹市", bestTime:"見頃：3月下旬～4月上旬", desc:"井の頭池を囲む約500本の桜が美しい。ボートに乗って池から桜を眺めるのが人気で、「逆さ桜」も見どころです。吉祥寺の街歩きと合わせて楽しめます。", imageUrl:"https://image.walkerplus.com/wpimg/walkertouch/wtd/images/n/62589.jpg?x=1920&notupsize=1", fee:"無料（ボート代別）", officialUrl:"https://www.gotokyo.org/jp/spot/624/index.html" },
+                { id:8, title:"六義園", location:"東京都文京区", bestTime:"見頃：3月下旬～4月上旬", desc:"しだれ桜の巨木が有名な回遊式庭園。春には大きなしだれ桜が見事に咲き誇り、夜間ライトアップも幻想的です。落ち着いた雰囲気で桜を鑑賞できます。", imageUrl:"https://img-cdn.guide.travel.co.jp/article/455/20160304191726/17200DAA2F2D4595AD5F400926404925_LL.jpg", fee:"有料（一般300円）", officialUrl:"https://www.tokyo-park.or.jp/special/rikugien_lighting_spring/index.html" },
+                { id:9, title:"千鳥ヶ淵", location:"東京都千代田区", bestTime:"見頃：3月下旬～4月上旬", desc:"皇居西側の濠に沿って約700m続く桜並木。ボートに乗って桜のトンネルをくぐる体験は圧巻。夜間ライトアップで幻想的な景観に。都会のオアシスとして多くの人で賑わいます。", imageUrl:"https://www.gotokyo.org/destinations/western-tokyo/chiyoda/chidorigafuchi/images/main.jpg", fee:"無料（ボート代別途）", officialUrl:"https://www.japan-guide.com/e/e3017.html" },
+                { id:10, title:"日比谷公園", location:"東京都千代田区", bestTime:"見頃：3月下旬～4月上旬", desc:"日本初の洋式公園として1903年開園。約300本の桜が園内を彩り、珍しい品種も。噴水や西洋建築と桜の調和がユニーク。都会の真ん中で優雅な花見を楽しめます。", imageUrl:"https://www.gotokyo.org/destinations/central-tokyo/chiyoda/hibiya-park/images/main.jpg", fee:"無料", officialUrl:"https://www.tokyo-park.or.jp/park/hibiya/index.html" },
+                { id:11, title:"代々木公園", location:"東京都渋谷区", bestTime:"見頃：3月下旬～4月上旬", desc:"広大な都市公園で600本以上の桜が見頃を迎えます。芝生広場でのんびり花見ができ、明治神宮に隣接し厳かな雰囲気も。地元の人々や観光客に愛される憩いの場。", imageUrl:"https://www.gotokyo.org/destinations/western-tokyo/shibuya/yoyogi-park/images/main.jpg", fee:"無料", officialUrl:"https://www.tokyo-park.or.jp/park/yoyogi/index.html" },
+                { id:12, title:"芝公園", location:"東京都港区", bestTime:"見頃：3月下旬～4月上旬", desc:"東京タワー直下の歴史ある公園。約200本の桜が赤いタワーとのコントラストで絶好の撮影スポットに。都会のシンボルと桜の共演が楽しめ、落ち着いた雰囲気の中で花見ができます。", imageUrl:"https://www.tokyo-park.or.jp/park/shiba/images/20230323114122.jpg", fee:"無料", officialUrl:"https://www.tokyo-park.or.jp/park/shiba/index.html" }
             ]
         };
 
-        // PWA install
+        // PWA install logic
         let deferredPrompt;
         const installBanner = document.getElementById('installBanner');
         const installButton = document.getElementById('installButton');
@@ -774,11 +563,10 @@
 
         window.addEventListener('appinstalled', () => {
             installBanner.classList.add('hidden');
-            console.log('PWA was installed');
         });
 
-        // Main app
-        let currentLang = 'ru'; // Russian as primary language
+        // App state
+        let currentLang = 'ru';
         let isDark = true;
         let currentSpotId = null;
 
@@ -793,46 +581,36 @@
         const mainSub = document.getElementById('main-sub');
         const body = document.body;
 
-        const titles = { 
-            ru: '🐱 Victoria\'s Blooming', 
-            en: '🐱 Victoria\'s Blooming', 
-            ja: '🐱 Victoria\'s Blooming' 
-        };
-        const subs = { 
-            ru: 'Лучшие места цветения сакуры в Токио',
-            en: 'Best cherry blossom spots in Tokyo', 
-            ja: '都内で楽しむ絶景桜スポット' 
-        };
+        const titles = { ru: '🐱 Victoria\'s Blooming', en: '🐱 Victoria\'s Blooming', ja: '🐱 Victoria\'s Blooming' };
+        const subs = { ru: 'Лучшие места цветения сакуры в Токио', en: 'Best cherry blossom spots in Tokyo', ja: '都内で楽しむ絶景桜スポット 全12選' };
 
         function handleImageError(img) {
             img.style.display = 'none';
             const parent = img.parentNode;
-            const placeholder = document.createElement('div');
-            placeholder.className = 'image-error';
-            placeholder.textContent = '🐱 ' + (img.alt || 'Image coming soon');
-            parent.appendChild(placeholder);
+            if (!parent.querySelector('.image-error')) {
+                const placeholder = document.createElement('div');
+                placeholder.className = 'image-error';
+                placeholder.textContent = '🐱 ' + (img.alt || 'Image coming soon');
+                parent.appendChild(placeholder);
+            }
         }
 
         function renderSpots(lang) {
             const data = spotsData[lang];
             if (!data) return;
-            
             container.innerHTML = '';
             data.forEach(spot => {
                 const card = document.createElement('div');
                 card.className = 'spot-card';
                 card.setAttribute('data-id', spot.id);
-                
                 const img = document.createElement('img');
                 img.src = spot.imageUrl;
                 img.alt = spot.title;
                 img.loading = 'lazy';
                 img.onerror = function() { handleImageError(this); };
-                
                 const imgDiv = document.createElement('div');
                 imgDiv.className = 'card-img';
                 imgDiv.appendChild(img);
-                
                 const contentDiv = document.createElement('div');
                 contentDiv.className = 'card-content';
                 contentDiv.innerHTML = `
@@ -841,7 +619,6 @@
                     <div class="card-best-time">${spot.bestTime}</div>
                     ${spot.fee ? `<div style="font-size:0.85rem; opacity:0.8;">💰 ${spot.fee}</div>` : ''}
                 `;
-                
                 card.appendChild(imgDiv);
                 card.appendChild(contentDiv);
                 card.addEventListener('click', () => showDetail(spot.id));
@@ -854,12 +631,7 @@
             const spot = spotsData[currentLang].find(s => s.id === spotId);
             if (!spot) return;
 
-            const officialLinkText = { 
-                ru: 'Официальный сайт →', 
-                en: 'Official Website →', 
-                ja: '公式サイトへ →' 
-            };
-
+            const officialLinkText = { ru: 'Официальный сайт →', en: 'Official Website →', ja: '公式サイトへ →' };
             detailContent.innerHTML = '';
 
             const img = document.createElement('img');
@@ -869,13 +641,15 @@
             img.loading = 'lazy';
             img.onerror = function() { 
                 this.style.display = 'none';
-                const placeholder = document.createElement('div');
-                placeholder.className = 'image-error';
-                placeholder.textContent = '🐱 ' + spot.title;
-                this.parentNode.insertBefore(placeholder, this);
+                if (!this.parentNode.querySelector('.image-error')) {
+                    const placeholder = document.createElement('div');
+                    placeholder.className = 'image-error';
+                    placeholder.textContent = '🐱 ' + spot.title;
+                    this.parentNode.insertBefore(placeholder, this);
+                }
             };
             detailContent.appendChild(img);
-            
+
             const textDiv = document.createElement('div');
             textDiv.innerHTML = `
                 <div class="detail-title">${spot.title}</div>
@@ -892,8 +666,6 @@
             backButtonContainer.style.display = 'flex';
             mainTitle.style.display = 'none';
             mainSub.style.display = 'none';
-            
-            // スクロール位置をトップに戻す
             window.scrollTo(0, 0);
         }
 
@@ -904,56 +676,36 @@
             mainTitle.style.display = 'block';
             mainSub.style.display = 'block';
             currentSpotId = null;
-            
-            // スクロール位置をトップに戻す
             window.scrollTo(0, 0);
         }
 
         function changeLanguage(lang) {
             if (!spotsData[lang]) return;
-            
             currentLang = lang;
             renderSpots(currentLang);
-            
             if (currentSpotId) {
                 const spotExists = spotsData[currentLang]?.some(s => s.id === currentSpotId);
                 if (spotExists) showDetail(currentSpotId);
                 else backToList();
             }
-            
             mainTitle.textContent = titles[lang] || titles.ru;
             mainSub.textContent = subs[lang] || subs.ru;
-            
-            langBtns.forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.lang === lang);
-            });
+            langBtns.forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
         }
 
-        langBtns.forEach(btn => {
-            btn.addEventListener('click', () => changeLanguage(btn.dataset.lang));
-        });
-
+        langBtns.forEach(btn => btn.addEventListener('click', () => changeLanguage(btn.dataset.lang)));
         themeToggle.addEventListener('click', () => {
             body.classList.toggle('light-mode');
             isDark = !body.classList.contains('light-mode');
             themeToggle.innerHTML = isDark ? '🌙 Dark / ☀️ Light' : '☀️ Light / 🌙 Dark';
         });
-
         document.getElementById('backToList').addEventListener('click', backToList);
 
-        // Initial render with Russian
         renderSpots('ru');
 
-        // Service Worker registration
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js')
-                    .then(registration => {
-                        console.log('ServiceWorker registered with scope:', registration.scope);
-                    })
-                    .catch(error => {
-                        console.log('ServiceWorker registration failed:', error);
-                    });
+                navigator.serviceWorker.register('sw.js').catch(err => console.log('SW registration failed:', err));
             });
         }
     </script>
